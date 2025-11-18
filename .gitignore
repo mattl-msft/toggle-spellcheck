@@ -1,0 +1,24 @@
+# Node modules (if you add any build tools)
+node_modules/
+package-lock.json
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Extension package
+*.zip
+*.crx
+*.pem
+
+# Temporary files
+*.log
+*.tmp
