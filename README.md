@@ -5,7 +5,7 @@ A simple browser extension for Chrome and Microsoft Edge that allows you to togg
 ## Features
 
 - 🔄 Toggle spellcheck on/off with a single click
-- 📝 Works with text inputs, textareas, and contenteditable elements
+- 📝 Works with text inputs, `textareas`, and `contenteditable` elements
 - 💾 Remembers your preference across pages
 - 🚀 Automatically applies to dynamically added elements
 - 🎨 Clean and simple user interface
@@ -55,17 +55,6 @@ toggle-spellcheck/
 └── README.md           # This file
 ```
 
-## Adding Icons
-
-You'll need to add icon files to the `icons/` folder with the following sizes:
-
-- 16x16 pixels (icon16.png)
-- 32x32 pixels (icon32.png)
-- 48x48 pixels (icon48.png)
-- 128x128 pixels (icon128.png)
-
-You can create simple icons using any image editor, or use a tool like [Figma](https://figma.com) or [Canva](https://canva.com).
-
 ## Browser Compatibility
 
 - ✅ Google Chrome (Manifest V3)
@@ -92,20 +81,3 @@ To modify the extension:
 ## License
 
 Free to use and modify.
-
-## Troubleshooting
-
-**Extension doesn't work on a page:**
-
-- Some pages (like chrome:// or edge:// URLs) don't allow extensions
-- Try refreshing the page after installing the extension
-
-**Spellcheck doesn't persist:**
-
-- Make sure the extension has permission to access the site
-- Check that browser storage permissions are granted
-
-**Button doesn't respond:**
-
-- Try closing and reopening the popup
-- Check the browser console for errors (F12)
