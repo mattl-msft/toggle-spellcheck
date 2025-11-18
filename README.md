@@ -80,4 +80,14 @@ To modify the extension:
 
 ## License
 
-Free to use and modify.
+This project is licensed under the GNU General Public License version 3 (GPL-3.0). You may copy, modify, and redistribute the code under the terms of that license.
+
+Key points:
+
+- Copyleft: Derivative works must also be distributed under GPL-3.0.
+- No warranty: Provided "as is" without any guarantee.
+- Patent protection: Includes explicit patent grants from contributors.
+
+See the `LICENSE` file for the complete text. If you contribute, you agree your contributions are licensed under GPL-3.0.
+
+If you need a permissive (non-copyleft) alternative, open an issue to discuss dual-licensing possibilities.
