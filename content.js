@@ -49,18 +49,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Initialize spellcheck state when the page loads
 async function initializeSpellcheck() {
-	try {
-		const result = await chrome.storage.local.get(['spellcheckEnabled']);
-		const isEnabled =
-			result.spellcheckEnabled !== undefined ? result.spellcheckEnabled : false;
-		setSpellcheck(isEnabled);
-	} catch (error) {
-		console.error('Error initializing spellcheck:', error);
-	}
+	// Do not auto-apply spellcheck on page load
+	// Spellcheck will only be applied when user clicks the activation button
+	console.log('Spellcheck extension loaded - waiting for activation');
 }
 
 // Observe DOM changes to apply spellcheck to dynamically added elements
 const observer = new MutationObserver(async (mutations) => {
+	// Only apply spellcheck to dynamically added elements if it's already been activated
 	// Check if any new text inputs or contenteditable elements were added
 	let shouldUpdate = false;
 
@@ -84,15 +80,12 @@ const observer = new MutationObserver(async (mutations) => {
 	}
 
 	if (shouldUpdate) {
-		try {
-			const result = await chrome.storage.local.get(['spellcheckEnabled']);
-			const isEnabled =
-				result.spellcheckEnabled !== undefined
-					? result.spellcheckEnabled
-					: false;
-			setSpellcheck(isEnabled);
-		} catch (error) {
-			console.error('Error updating spellcheck on DOM change:', error);
+		// Only apply if user has already activated spellcheck
+		// We check by seeing if any element already has spellcheck attribute set
+		const existingElements = getSpellcheckableElements();
+		if (existingElements.length > 0 && existingElements[0].hasAttribute('spellcheck')) {
+			const currentValue = existingElements[0].getAttribute('spellcheck') === 'true';
+			setSpellcheck(currentValue);
 		}
 	}
 });
