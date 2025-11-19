@@ -4,11 +4,11 @@ A simple browser extension for Chrome and Microsoft Edge that allows you to togg
 
 ## Features
 
-- 🔄 Toggle spellcheck on/off with a single click
+- 🔄 Three-state toggle: Unactivated → ON → OFF → ON...
 - 📝 Works with text inputs, `textareas`, and `contenteditable` elements
-- 💾 Remembers your preference across pages
-- 🚀 Automatically applies to dynamically added elements
-- 🎨 Clean and simple user interface
+- 🔄 Resets to unactivated state on page refresh
+- 🚀 Automatically applies to dynamically added elements (once activated)
+- 🎨 Clean and simple user interface with color-coded states
 
 ## Installation
 
@@ -25,18 +25,35 @@ A simple browser extension for Chrome and Microsoft Edge that allows you to togg
 
 1. Navigate to any webpage with text input fields
 2. Click the extension icon in your browser toolbar
-3. Click the toggle button to turn spellcheck ON or OFF
-4. The current state is displayed in the popup
-5. All text fields on the page will be updated immediately
+3. **First time on page**: You'll see a gray button saying "Activate spell check"
+4. **First click**: Activates spellcheck and turns it ON (green button)
+5. **Subsequent clicks**: Toggle between ON (green) and OFF (red)
+6. **Refresh page**: Returns to the unactivated state (gray button)
+
+### State Behavior
+
+- **🔘 Gray (Unactivated)**: Default state on page load. Spellcheck is not applied to any fields.
+- **🟢 Green (ON)**: Spellcheck is actively checking all text fields, textareas, and contenteditable elements.
+- **🔴 Red (OFF)**: Spellcheck is disabled for all text fields, textareas, and contenteditable elements.
+
+Note: Each page refresh resets the extension to the unactivated state, requiring you to activate spellcheck again if needed.
 
 ## How It Works
 
-The extension:
+The extension operates in three states:
 
-- Finds all `<input>`, `<textarea>`, and elements with `contenteditable` attributes
-- Sets the `spellcheck` attribute to either `true` or `false`
-- Monitors the page for dynamically added elements and applies the setting automatically
-- Stores your preference using Chrome's storage API
+1. **Unactivated (Default)**: When you first load a page, the extension is in an unactivated state. No spellcheck attributes are applied to page elements.
+
+2. **Activated - ON**: After clicking "Activate spell check", the extension:
+   - Finds all `<input>`, `<textarea>`, and elements with `contenteditable` attributes
+   - Sets the `spellcheck` attribute to `true`
+   - Monitors the page for dynamically added elements and applies the setting automatically
+
+3. **Activated - OFF**: Clicking again toggles to OFF state:
+   - Sets the `spellcheck` attribute to `false` on all applicable elements
+   - Continues monitoring for new elements
+
+The activation state is tracked per-tab using session storage, which automatically clears when you refresh the page or navigate to a new page, returning you to the unactivated state.
 
 ## Files Structure
 
