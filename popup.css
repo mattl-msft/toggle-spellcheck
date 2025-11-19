@@ -40,6 +40,14 @@ body {
 	background: #da190b;
 }
 
+.toggle-button.unactivated {
+	background: #9e9e9e;
+}
+
+.toggle-button.unactivated:hover {
+	background: #757575;
+}
+
 .toggle-button:active {
 	transform: scale(0.98);
 }
